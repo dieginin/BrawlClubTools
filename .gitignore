@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,macos,database,python
 
 ### Database ###
-database.*
+database.json
 db.*
 *.accdb
 *.db
