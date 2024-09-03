@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Optional
 
 import requests
@@ -22,6 +23,19 @@ class WholeClub:
     @property
     def trophies(self) -> int:
         return sum(member.trophies for member in self.members)
+
+    @property
+    def month_birthdays(self) -> list[Member]:
+        real_names_in_current_month = set()
+        birthdays = []
+
+        for m in self.members:
+            if m.birthday and m.birthday.month == date.today().month:
+                if m.real_name not in real_names_in_current_month:
+                    birthdays.append(m)
+                    real_names_in_current_month.add(m.real_name)
+
+        return birthdays
 
     def __fetch_members(self, code: str) -> list[Member]:
         data = []
