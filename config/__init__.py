@@ -1,1 +1,1 @@
-from .config import API_KEY, MONGO_PASSWORD
+from .config import API_KEY, DB_KEY
