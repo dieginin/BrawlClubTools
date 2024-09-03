@@ -1,16 +1,11 @@
-import os
 from typing import Optional
 
 import requests
-from dotenv import load_dotenv
 
+from config import API_KEY
 from models import Member
 
 from .database import Database
-
-load_dotenv()
-
-api_key = os.getenv("BRAWL_API_KEY")
 
 parse_code = lambda code: code.strip("#")
 
@@ -30,7 +25,7 @@ class WholeClub:
 
     def __fetch_members(self, code: str) -> list[Member]:
         data = []
-        headers = {"Authorization": f"Bearer {api_key}"}
+        headers = {"Authorization": f"Bearer {API_KEY}"}
         base_url = f"https://bsproxy.royaleapi.dev/v1/clubs"
 
         code = parse_code(code)
