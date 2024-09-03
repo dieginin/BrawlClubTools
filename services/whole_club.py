@@ -37,6 +37,16 @@ class WholeClub:
 
         return birthdays
 
+    @property
+    def countries(self) -> dict[str, int]:
+        countries = {}
+        for m in self.members:
+            if m.country not in countries:
+                countries[m.country] = 1
+            else:
+                countries[m.country] += 1
+        return dict(sorted(countries.items(), key=lambda item: item[1], reverse=True))
+
     def __fetch_members(self, code: str) -> list[Member]:
         data = []
         headers = {"Authorization": f"Bearer {API_KEY}"}
