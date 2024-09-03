@@ -30,12 +30,6 @@ class Member:
         self.phone_number = self.__format_number(phone_number)
         self.club = club
 
-    def __save(self) -> None:
-        from services import Database
-
-        db = Database()
-        db.save_member(self)
-
     def __format_number(self, phone_number: Optional[str]) -> str | None:
         if not phone_number:
             return None
@@ -50,23 +44,23 @@ class Member:
 
     def set_real_name(self, real_name: str) -> None:
         self.real_name = real_name
-        self.__save()
+        save_member(self)
 
     def set_birthday(self, birthday: date) -> None:
         self.birthday = birthday
-        self.__save()
+        save_member(self)
 
     def set_phone_number(self, phone_number: str) -> None:
         self.phone_number = self.__format_number(phone_number)
-        self.__save()
+        save_member(self)
 
     def add_strike(self) -> None:
         self.strikes += 1
-        self.__save()
+        save_member(self)
 
     def reset_strikes(self) -> None:
         self.strikes = 0
-        self.__save()
+        save_member(self)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -101,3 +95,10 @@ class Member:
         if not isinstance(other, Member):
             return False
         return self.tag == other.tag
+
+
+def save_member(member: Member) -> None:
+    from services import Database
+
+    db = Database()
+    db.save_member(member)
