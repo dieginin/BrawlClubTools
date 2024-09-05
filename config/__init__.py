@@ -1,1 +1,1 @@
-from .config import API_KEY, DB_CONFIG
+from .config import API_KEY, DB_CONFIG, DISCORD_TOKEN

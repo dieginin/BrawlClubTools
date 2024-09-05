@@ -15,3 +15,4 @@ DB_CONFIG = {
     "appId": os.getenv("APPID"),
     "measurementId": os.getenv("MSRMTID"),
 }
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
